@@ -4,6 +4,9 @@ import DataContext from "./context/DataContext";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+import Home from "./views/Home";
+import Carrito from "./views/Carrito";
+import Pizza from "./views/Pizza";
 import Navigation from "./components/Navigation";
 
 function App() {
@@ -14,7 +17,8 @@ function App() {
   const getData = async (url) => {
     const response = await fetch(url);
     const data = await response.json();
-    setData(data.photos);
+    setData(data);
+    console.log(data);
   };
 
   useEffect(() => {
@@ -25,16 +29,22 @@ function App() {
     data,
     setData,
   };
+
   return (
     <>
-      <DataContext value={allState}>
+      <DataContext.Provider value={allState}>
         <BrowserRouter>
           <Navigation />
+
           <Routes>
-            <Route path></Route>
+            <Route path="/">
+              <Route path="" element={<Home />} />
+              <Route path="/carrito" element={<Carrito />} />
+              <Route path="/pizza:id" element={<Pizza />} />
+            </Route>
           </Routes>
         </BrowserRouter>
-      </DataContext>
+      </DataContext.Provider>
     </>
   );
 }

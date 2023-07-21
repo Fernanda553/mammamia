@@ -4,9 +4,11 @@ import { NavLink } from "react-router-dom";
 function Navigation() {
   return (
     <>
-      <Navbar expand="lg" className="bg-body-tertiary">
+      <Navbar bg="info" data-bs-theme="litgh">
         <Container>
-          <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+          <Navbar.Brand>
+            <NavLink to="/">🍕</NavLink>
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
