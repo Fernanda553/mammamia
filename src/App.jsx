@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import "./app.css";
 import DataContext from "./context/DataContext";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -18,7 +18,6 @@ function App() {
     const response = await fetch(url);
     const data = await response.json();
     setData(data);
-    console.log(data);
   };
 
   useEffect(() => {
@@ -35,7 +34,6 @@ function App() {
       <DataContext.Provider value={allState}>
         <BrowserRouter>
           <Navigation />
-
           <Routes>
             <Route path="/">
               <Route path="" element={<Home />} />

@@ -8,8 +8,9 @@ function Header() {
         backgroundSize: "cover",
       }}
     >
-      <h1>! Pizzaría Mamma mia ¡</h1>
+      <h1>! Pizzaría Mamma mía ¡</h1>
       <p>! tenemos las mejores pizzas que podrás encontrar ¡</p>
+      <br />
     </div>
   );
 }

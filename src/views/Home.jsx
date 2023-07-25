@@ -1,26 +1,51 @@
 import { useContext } from "react";
 import DataContext from "../context/DataContext";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
 
 export default function Home() {
   const { data } = useContext(DataContext);
+  const navigate = useNavigate();
+
+  const handlerClick = (id) => {
+    navigate(`/pizza/${id}`);
+  };
   return (
-    <>
+    <Container fluid>
       <Header />
-      <NavLink to="/pizza" className="text-decoration-none">
-        <div className="d-flex">
+      <Container>
+        <Row>
           {data.map((pizza) => (
-            <div key={pizza.id} style={{ width: "15rem" }}>
-              <img src={pizza.img} style={{ width: "14rem" }} />
-              <h2>{pizza.name}</h2>
-              {pizza.ingredients.map((ingredient) => (
-                <li key={ingredient}>🍕{ingredient}</li>
-              ))}
-            </div>
+            <Col key={pizza.id}>
+              <Card className="m-4 border" style={{ width: "18rem" }}>
+                <Card.Img
+                  src={pizza.img}
+                  style={{ width: "16rem" }}
+                  className="mx-auto p-2"
+                />
+                <Card.Body>
+                  <Card.Header>
+                    <Card.Title>{pizza.name}</Card.Title>
+                  </Card.Header>
+                  <div>
+                    {pizza.ingredients.map((ingredient) => (
+                      <p key={ingredient}>🍕{ingredient}</p>
+                    ))}
+                  </div>
+                  <Button onClick={() => handlerClick(pizza.id)}>
+                    Ver más 👀
+                  </Button>{" "}
+                  <Button className="bg-danger">Añadir 🛒</Button>
+                  <Card.Footer className="text-center">
+                    ${pizza.price}
+                  </Card.Footer>
+                </Card.Body>
+              </Card>
+            </Col>
           ))}
-        </div>
-      </NavLink>
-    </>
+        </Row>
+      </Container>
+    </Container>
   );
 }
