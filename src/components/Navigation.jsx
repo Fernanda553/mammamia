@@ -4,20 +4,20 @@ import { NavLink } from "react-router-dom";
 function Navigation() {
   return (
     <>
-      <Navbar bg="info" data-bs-theme="dark">
-        <Container>
+      <Navbar bg="dark" data-bs-theme="dark">
+        <Container className="d-flex justify-content-between">
           <Navbar.Brand>
             <NavLink className="text-decoration-none" to="/">
               🍕
             </NavLink>
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
           <Navbar.Collapse>
             <Nav>
               <NavLink to="/" className="text-decoration-none text-white">
                 Pizzería Mamma mía
               </NavLink>
-              <NavLink to="/carrito" className="text-decoration-none">
+              <NavLink to="/carrito" className="text-decoration-none me-auto">
                 🛒
               </NavLink>
             </Nav>

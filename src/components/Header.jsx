@@ -1,16 +1,11 @@
 function Header() {
   return (
-    <div
-      className="text-center text-white"
-      style={{
-        backgroundImage: `url('./bgPizza.png')`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-      }}
-    >
-      <h1>! Pizzaría Mamma mía ¡</h1>
-      <p>! tenemos las mejores pizzas que podrás encontrar ¡</p>
-      <br />
+    <div className="header">
+      <div className="pt-2">
+        <h1>! Pizzería Mamma mía ¡</h1>
+        <p>! tenemos las mejores pizzas que podrás encontrar ¡</p>
+      </div>
+      <img src="/public/p2.png" />
     </div>
   );
 }

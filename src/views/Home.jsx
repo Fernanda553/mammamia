@@ -14,20 +14,21 @@ export default function Home() {
   return (
     <Container fluid>
       <Header />
-      <Container>
+      <Container fluid="md">
         <Row>
           {data.map((pizza) => (
             <Col key={pizza.id}>
-              <Card className="m-4 border" style={{ width: "18rem" }}>
-                <Card.Img
-                  src={pizza.img}
-                  style={{ width: "16rem" }}
-                  className="mx-auto p-2"
-                />
-                <Card.Body>
-                  <Card.Header>
-                    <Card.Title>{pizza.name}</Card.Title>
-                  </Card.Header>
+              <Card
+                border="warning"
+                style={{
+                  width: "30rem",
+                  margin: "20px",
+                  fontWeight: "bolder",
+                }}
+              >
+                <Card.Img src={pizza.img} />
+                <Card.ImgOverlay>
+                  <Card.Title>{pizza.name}</Card.Title>
                   <div>
                     {pizza.ingredients.map((ingredient) => (
                       <p key={ingredient}>🍕{ingredient}</p>
@@ -40,7 +41,7 @@ export default function Home() {
                   <Card.Footer className="text-center">
                     ${pizza.price}
                   </Card.Footer>
-                </Card.Body>
+                </Card.ImgOverlay>
               </Card>
             </Col>
           ))}
