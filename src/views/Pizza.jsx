@@ -22,27 +22,53 @@ export default function Pizza() {
 
   return (
     <>
-      <Card className="m-auto border" style={{ width: "25rem" }}>
-        <Card.Img
-          src={pizza?.img}
-          style={{ width: "17rem" }}
-          className="mx-auto p-2"
-        />
-        <Card.Body>
-          <Card.Header>
+      <div
+        style={{
+          backgroundImage: `url("/public/gala.png")`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }}
+      >
+        <Card
+          className="m-auto"
+          border="info"
+          style={{
+            width: "25rem",
+            backgroundColor: "#000",
+            color: "#fff",
+          }}
+        >
+          <Card.Img
+            src={pizza?.img}
+            style={{ width: "23rem", margin: "auto", paddingTop: "10px" }}
+          />
+          <Card.Body>
             <Card.Title>{pizza?.name}</Card.Title>
-          </Card.Header>
-          <Card.Text>{pizza?.desc}</Card.Text>
-          <div>
-            Ingredientes:
-            {pizza?.ingredients.map((ingredient) => (
-              <p key={ingredient}>🍕{ingredient}</p>
-            ))}
-          </div>
-          <Button className="bg-danger">Añadir 🛒</Button>
-          <Card.Footer className="text-center">${pizza.price}</Card.Footer>
-        </Card.Body>
-      </Card>
+            <Card.Text>{pizza?.desc}</Card.Text>
+            <div>
+              <h5 className="p-2">Ingredientes:</h5>
+
+              {pizza?.ingredients.map((ingredient) => (
+                <p key={ingredient}>🍕{ingredient}</p>
+              ))}
+            </div>
+            <img
+              src="/public/ppizza.png"
+              alt="Pizza planet"
+              style={{ width: "5rem", margin: "1px 25px" }}
+            />
+            <Button variant="outline-warning">Añadir 🛒</Button>
+            <img
+              src="/public/ppizza.png"
+              alt="Pizza planet"
+              style={{ width: "5rem", margin: "1px 25px" }}
+            />
+            <Card.Footer className="border-success text-info text-center">
+              ${pizza.price}
+            </Card.Footer>
+          </Card.Body>
+        </Card>
+      </div>
     </>
   );
 }

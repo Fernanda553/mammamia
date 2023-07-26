@@ -8,9 +8,11 @@ import Home from "./views/Home";
 import Carrito from "./views/Carrito";
 import Pizza from "./views/Pizza";
 import Navigation from "./components/Navigation";
+import NotFound from "./views/NotFound";
 
 function App() {
   const [data, setData] = useState([]);
+  const [valor, setValor] = useState("0");
 
   const endpoint = "/pizzas.json";
 
@@ -27,6 +29,8 @@ function App() {
   const allState = {
     data,
     setData,
+    valor,
+    setValor,
   };
 
   return (
@@ -39,6 +43,7 @@ function App() {
               <Route path="" element={<Home />} />
               <Route path="/carrito" element={<Carrito />} />
               <Route path="/pizza/:id" element={<Pizza />} />
+              <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
         </BrowserRouter>

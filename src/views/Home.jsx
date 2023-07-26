@@ -5,7 +5,7 @@ import Header from "../components/Header";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 
 export default function Home() {
-  const { data } = useContext(DataContext);
+  const { data, valor, setValor } = useContext(DataContext);
   const navigate = useNavigate();
 
   const handlerClick = (id) => {
@@ -37,7 +37,12 @@ export default function Home() {
                   <Button onClick={() => handlerClick(pizza.id)}>
                     Ver más 👀
                   </Button>{" "}
-                  <Button className="bg-danger">Añadir 🛒</Button>
+                  <Button
+                    onClick={() => setValor(+valor + pizza.price)}
+                    className="bg-danger"
+                  >
+                    Añadir 🛒
+                  </Button>
                   <Card.Footer className="text-center">
                     ${pizza.price}
                   </Card.Footer>
