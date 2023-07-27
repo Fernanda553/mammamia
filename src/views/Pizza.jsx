@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import DataContext from "../context/DataContext";
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, Container } from "react-bootstrap";
 
 export default function Pizza() {
   const { id } = useParams();
-  const { data } = useContext(DataContext);
+  const { data, valor, setValor } = useContext(DataContext);
   const [pizza, setPizza] = useState();
 
   const filterPizza = () => {
@@ -22,7 +22,8 @@ export default function Pizza() {
 
   return (
     <>
-      <div
+      <Container
+        fluid
         style={{
           backgroundImage: `url("/public/gala.png")`,
           backgroundRepeat: "no-repeat",
@@ -57,7 +58,12 @@ export default function Pizza() {
               alt="Pizza planet"
               style={{ width: "5rem", margin: "1px 25px" }}
             />
-            <Button variant="outline-warning">Añadir 🛒</Button>
+            <Button
+              variant="outline-warning"
+              onClick={() => setValor(+valor + pizza.price)}
+            >
+              Añadir 🛒
+            </Button>
             <img
               src="/public/ppizza.png"
               alt="Pizza planet"
@@ -68,7 +74,7 @@ export default function Pizza() {
             </Card.Footer>
           </Card.Body>
         </Card>
-      </div>
+      </Container>
     </>
   );
 }
