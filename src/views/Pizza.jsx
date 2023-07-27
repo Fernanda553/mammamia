@@ -5,7 +5,7 @@ import { Button, Card, Container } from "react-bootstrap";
 
 export default function Pizza() {
   const { id } = useParams();
-  const { data, valor, setValor } = useContext(DataContext);
+  const { data } = useContext(DataContext);
   const [pizza, setPizza] = useState();
 
   const filterPizza = () => {
@@ -22,14 +22,7 @@ export default function Pizza() {
 
   return (
     <>
-      <Container
-        fluid
-        style={{
-          backgroundImage: `url("/public/gala.png")`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-        }}
-      >
+      <Container fluid>
         <Card
           className="m-auto"
           border="info"
@@ -46,24 +39,15 @@ export default function Pizza() {
           <Card.Body>
             <Card.Title>{pizza?.name}</Card.Title>
             <Card.Text>{pizza?.desc}</Card.Text>
-            <div>
-              <h5 className="p-2">Ingredientes:</h5>
-
-              {pizza?.ingredients.map((ingredient) => (
-                <p key={ingredient}>🍕{ingredient}</p>
-              ))}
-            </div>
+            {pizza.ingredients.map((ingredient) => (
+              <Card.Text key={ingredient}>🍕{ingredient}</Card.Text>
+            ))}
             <img
               src="/public/ppizza.png"
               alt="Pizza planet"
               style={{ width: "5rem", margin: "1px 25px" }}
             />
-            <Button
-              variant="outline-warning"
-              onClick={() => setValor(+valor + pizza.price)}
-            >
-              Añadir 🛒
-            </Button>
+            <Button variant="outline-warning">Añadir 🛒</Button>
             <img
               src="/public/ppizza.png"
               alt="Pizza planet"

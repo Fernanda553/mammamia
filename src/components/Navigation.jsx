@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import DataContext from "../context/DataContext";
 
 function Navigation() {
-  const { valor } = useContext(DataContext);
+  const { total } = useContext(DataContext);
 
   const isActiveLink = ({ isActive }) => {
     const styleActive = "text-decoration-none me-3";
@@ -22,7 +22,7 @@ function Navigation() {
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
             <NavLink to="/carrito" className={isActiveLink}>
-              🛒 ${valor}
+              🛒 ${total}
             </NavLink>
           </Navbar.Collapse>
         </Container>

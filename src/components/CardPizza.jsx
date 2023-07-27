@@ -4,8 +4,26 @@ import { useNavigate } from "react-router-dom";
 import { Button, Card, Col } from "react-bootstrap";
 
 function CardPizza() {
-  const { data, valor, setValor } = useContext(DataContext);
+  const { data, cart, setCart } = useContext(DataContext);
   const navigate = useNavigate();
+
+  const addCart = (pizza) => {
+    const pizzaInCart = cart.findIndex((item) => item.id === pizza.id);
+
+    if (pizzaInCart >= 0) {
+      const newCart = structuredClone(cart);
+      newCart[pizzaInCart].quantity += 1;
+      return setCart(newCart);
+    }
+
+    setCart((prevState) => [
+      ...prevState,
+      {
+        ...pizza,
+        quantity: 1,
+      },
+    ]);
+  };
 
   const handlerClick = (id) => {
     navigate(`/pizza/${id}`);
@@ -13,39 +31,41 @@ function CardPizza() {
 
   return (
     <>
-      {data.map((pizza) => (
-        <Col key={pizza.id}>
-          <Card
-            border="warning"
-            style={{
-              width: "30rem",
-              margin: "auto",
-              marginTop: "3rem",
-              fontWeight: "bolder",
-            }}
-          >
-            <Card.Img src={pizza.img} />
-            <Card.Body>
-              <Card.Title>{pizza.name}</Card.Title>
-              <Card.Text>
-                <div>
-                  {pizza.ingredients.map((ingredient) => (
-                    <p key={ingredient}>🍕{ingredient}</p>
-                  ))}
-                </div>
-              </Card.Text>
-              <Button onClick={() => handlerClick(pizza.id)}>Ver más 👀</Button>{" "}
-              <Button
-                onClick={() => setValor(+valor + pizza.price)}
-                className="bg-danger"
-              >
-                Añadir 🛒
-              </Button>
-              <Card.Footer className="text-center">${pizza.price}</Card.Footer>
-            </Card.Body>
-          </Card>
-        </Col>
-      ))}
+      {data.map((pizza) => {
+        return (
+          <Col key={pizza.id}>
+            <Card
+              border="warning"
+              style={{
+                width: "30rem",
+                margin: "auto",
+                marginTop: "3rem",
+                fontWeight: "bolder",
+              }}
+            >
+              <Card.Img src={pizza.img} />
+              <Card.Body>
+                <Card.Title>{pizza.name}</Card.Title>
+                {pizza.ingredients.map((ingredient) => (
+                  <Card.Text key={ingredient}>🍕{ingredient}</Card.Text>
+                ))}
+                <Button onClick={() => handlerClick(pizza.id)}>
+                  Ver más 👀
+                </Button>{" "}
+                <Button
+                  className="bg-danger"
+                  onClick={() => addCart({ pizza })}
+                >
+                  Añadir 🛒
+                </Button>
+                <Card.Footer className="text-center">
+                  ${pizza.price}
+                </Card.Footer>
+              </Card.Body>
+            </Card>
+          </Col>
+        );
+      })}
     </>
   );
 }
