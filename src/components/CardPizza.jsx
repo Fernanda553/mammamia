@@ -2,28 +2,12 @@ import { useContext } from "react";
 import DataContext from "../context/DataContext";
 import { useNavigate } from "react-router-dom";
 import { Button, Card, Col } from "react-bootstrap";
+import CartContext from "../context/CartContext";
 
 function CardPizza() {
-  const { data, cart, setCart } = useContext(DataContext);
+  const { data } = useContext(DataContext);
+  const { addCart } = useContext(CartContext);
   const navigate = useNavigate();
-
-  const addCart = (pizza) => {
-    const pizzaInCart = cart.findIndex((item) => item.id === pizza.id);
-
-    if (pizzaInCart >= 0) {
-      const newCart = structuredClone(cart);
-      newCart[pizzaInCart].quantity += 1;
-      return setCart(newCart);
-    }
-
-    setCart((prevState) => [
-      ...prevState,
-      {
-        ...pizza,
-        quantity: 1,
-      },
-    ]);
-  };
 
   const handlerClick = (id) => {
     navigate(`/pizza/${id}`);
@@ -52,10 +36,7 @@ function CardPizza() {
                 <Button onClick={() => handlerClick(pizza.id)}>
                   Ver más 👀
                 </Button>{" "}
-                <Button
-                  className="bg-danger"
-                  onClick={() => addCart({ pizza })}
-                >
+                <Button className="bg-danger" onClick={() => addCart(pizza)}>
                   Añadir 🛒
                 </Button>
                 <Card.Footer className="text-center">

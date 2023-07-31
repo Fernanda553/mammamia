@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { Container, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import DataContext from "../context/DataContext";
+import CartContext from "../context/CartContext";
 
 function Navigation() {
-  const { total } = useContext(DataContext);
+  const { total } = useContext(CartContext);
 
   const isActiveLink = ({ isActive }) => {
     const styleActive = "text-decoration-none me-3";
