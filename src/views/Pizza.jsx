@@ -1,15 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import DataContext from "../context/DataContext";
 import { Button, Card, Container } from "react-bootstrap";
+import CartContext from "../context/CartContext";
 
 export default function Pizza() {
   const { id } = useParams();
-  const { data } = useContext(DataContext);
+  const { pizzas, addCart } = useContext(CartContext);
   const [pizza, setPizza] = useState();
 
   const filterPizza = () => {
-    const [findPizza] = data.filter((pizza) => pizza.id === id);
+    const [findPizza] = pizzas.filter((pizza) => pizza.id === id);
     console.log(findPizza);
     setPizza(findPizza);
   };
@@ -47,7 +47,9 @@ export default function Pizza() {
               alt="Pizza planet"
               style={{ width: "5rem", margin: "1px 25px" }}
             />
-            <Button variant="outline-warning">Añadir 🛒</Button>
+            <Button variant="outline-warning" onClick={() => addCart(pizza)}>
+              Añadir 🛒
+            </Button>
             <img
               src="/public/ppizza.png"
               alt="Pizza planet"

@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 
-export function usePizza() {
+export function useFetch(endpoint) {
   const [data, setData] = useState([]);
-
-  const endpoint = "/pizzas.json";
 
   const getData = async (url) => {
     const response = await fetch(url);
@@ -13,7 +11,7 @@ export function usePizza() {
 
   useEffect(() => {
     getData(endpoint);
-  }, []);
+  }, [endpoint]);
 
   return { data };
 }

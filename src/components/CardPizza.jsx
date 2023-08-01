@@ -1,12 +1,11 @@
 import { useContext } from "react";
-import DataContext from "../context/DataContext";
+
 import { useNavigate } from "react-router-dom";
 import { Button, Card, Col } from "react-bootstrap";
 import CartContext from "../context/CartContext";
 
 function CardPizza() {
-  const { data } = useContext(DataContext);
-  const { addCart } = useContext(CartContext);
+  const { pizzas, addCart } = useContext(CartContext);
   const navigate = useNavigate();
 
   const handlerClick = (id) => {
@@ -15,9 +14,9 @@ function CardPizza() {
 
   return (
     <>
-      {data.map((pizza) => {
+      {pizzas.map((pizza) => {
         return (
-          <Col key={pizza.id}>
+          <Col key={pizza?.id}>
             <Card
               border="warning"
               style={{
@@ -27,10 +26,10 @@ function CardPizza() {
                 fontWeight: "bolder",
               }}
             >
-              <Card.Img src={pizza.img} />
+              <Card.Img src={pizza?.img} />
               <Card.Body>
-                <Card.Title>{pizza.name}</Card.Title>
-                {pizza.ingredients.map((ingredient) => (
+                <Card.Title>{pizza?.name}</Card.Title>
+                {pizza.ingredients?.map((ingredient) => (
                   <Card.Text key={ingredient}>🍕{ingredient}</Card.Text>
                 ))}
                 <Button onClick={() => handlerClick(pizza.id)}>
@@ -40,7 +39,7 @@ function CardPizza() {
                   Añadir 🛒
                 </Button>
                 <Card.Footer className="text-center">
-                  ${pizza.price}
+                  ${pizza?.price}
                 </Card.Footer>
               </Card.Body>
             </Card>

@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useFetch } from "./useFetch";
 
 export function useCart() {
+  const { data: pizzas } = useFetch("/pizzas.json");
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState("0");
 
@@ -12,6 +14,7 @@ export function useCart() {
     if (pizzaInCart >= 0) {
       const newCart = structuredClone(cart);
       newCart[pizzaInCart].quantity += 1;
+
       return setCart(newCart);
     }
 
@@ -25,6 +28,7 @@ export function useCart() {
   };
 
   const clearCart = () => {
+    setCart([]);
     setTotal("0");
   };
 
@@ -36,5 +40,13 @@ export function useCart() {
     return cart.some((item) => item.id === pizza.id);
   };
 
-  return { total, cart, addCart, clearCart, removeFromCart, checkPizzaInCart };
+  return {
+    pizzas,
+    total,
+    cart,
+    addCart,
+    clearCart,
+    removeFromCart,
+    checkPizzaInCart,
+  };
 }
