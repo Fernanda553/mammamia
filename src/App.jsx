@@ -9,6 +9,7 @@ import Navigation from "./components/Navigation";
 import NotFound from "./views/NotFound";
 import { useCart } from "./hooks/useCart";
 import CartContext from "./context/CartContext";
+import Thanks from "./views/Thanks";
 
 function App() {
   const allState = useCart();
@@ -17,11 +18,13 @@ function App() {
     <CartContext.Provider value={allState}>
       <BrowserRouter>
         <Navigation />
+
         <Routes>
           <Route path="/">
             <Route path="" element={<Home />} />
             <Route path="/carrito" element={<Cart />} />
             <Route path="/pizza/:id" element={<Pizza />} />
+            <Route path="/thanks" element={<Thanks />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

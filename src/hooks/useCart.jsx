@@ -33,11 +33,29 @@ export function useCart() {
   };
 
   const removeFromCart = (pizza) => {
-    setCart((prevState) => prevState.filter((item) => item.id !== pizza.id));
+    const newCart = cart.flatMap((p) => {
+      if (p.id === pizza.id) {
+        setTotal(+total - pizza.price);
+        if (p.quantity > 1) {
+          p.quantity -= 1;
+          return p;
+        }
+        return [];
+      }
+      return p;
+    });
+    setCart(newCart);
   };
+  const addOneMore = (pizza) => {
+    setTotal(+total + pizza.price);
+    const pizzaInCart = cart.findIndex((item) => item.id === pizza.id);
 
-  const checkPizzaInCart = (pizza) => {
-    return cart.some((item) => item.id === pizza.id);
+    if (pizzaInCart >= 0) {
+      const newCart = structuredClone(cart);
+      newCart[pizzaInCart].quantity += 1;
+
+      return setCart(newCart);
+    }
   };
 
   return {
@@ -45,8 +63,8 @@ export function useCart() {
     total,
     cart,
     addCart,
+    addOneMore,
     clearCart,
     removeFromCart,
-    checkPizzaInCart,
   };
 }

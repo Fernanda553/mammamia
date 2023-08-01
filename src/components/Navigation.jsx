@@ -22,7 +22,7 @@ function Navigation() {
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
             <NavLink to="/carrito" className={isActiveLink}>
-              🛒 ${total}
+              🛒 $ {total}
             </NavLink>
           </Navbar.Collapse>
         </Container>

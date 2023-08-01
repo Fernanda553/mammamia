@@ -20,7 +20,7 @@ function CardPizza() {
             <Card
               border="warning"
               style={{
-                width: "30rem",
+                width: "25rem",
                 margin: "auto",
                 marginTop: "3rem",
                 fontWeight: "bolder",
@@ -32,12 +32,17 @@ function CardPizza() {
                 {pizza.ingredients?.map((ingredient) => (
                   <Card.Text key={ingredient}>🍕{ingredient}</Card.Text>
                 ))}
-                <Button onClick={() => handlerClick(pizza.id)}>
-                  Ver más 👀
-                </Button>{" "}
-                <Button className="bg-danger" onClick={() => addCart(pizza)}>
-                  Añadir 🛒
-                </Button>
+                <div className="d-flex justify-content-around">
+                  <Button
+                    className="bg-primary"
+                    onClick={() => handlerClick(pizza.id)}
+                  >
+                    Ver más 👀
+                  </Button>{" "}
+                  <Button className="bg-danger" onClick={() => addCart(pizza)}>
+                    Añadir 🛒
+                  </Button>
+                </div>
                 <Card.Footer className="text-center">
                   ${pizza?.price}
                 </Card.Footer>

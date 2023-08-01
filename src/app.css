@@ -1,12 +1,4 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
 #root {
-  width: 100%;
-  height: 100vh;
   background: rgb(22, 22, 21);
   background: linear-gradient(
     180deg,
@@ -20,10 +12,6 @@
   );
   color: rgb(224, 224, 224);
 }
-.container-fluid {
-  padding: 0;
-  margin: 0;
-}
 
 .header {
   display: flex;
@@ -35,4 +23,71 @@
 
 .header > img {
   width: 8rem;
+}
+
+.pizza {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardPizza {
+  display: flex;
+  flex-direction: column;
+  width: 25rem;
+  background-color: #000;
+  color: #fff;
+}
+
+.cardPizza > img {
+  width: 23rem;
+  margin: auto;
+  padding-top: 10px;
+}
+
+.forCart {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-image: url(/public/galaxiaa.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.cart {
+  width: 80%;
+  border: 3px solid #fc2eff;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
+  gap: 3rem;
+}
+
+.list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30rem;
+}
+
+.thanks {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url(/public/alien.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }

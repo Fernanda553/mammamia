@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Button, Card, Container } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import CartContext from "../context/CartContext";
 
 export default function Pizza() {
@@ -21,46 +21,33 @@ export default function Pizza() {
   if (!pizza) return <div>producto no disponible</div>;
 
   return (
-    <>
-      <Container fluid>
-        <Card
-          className="m-auto"
-          border="info"
-          style={{
-            width: "25rem",
-            backgroundColor: "#000",
-            color: "#fff",
-          }}
-        >
-          <Card.Img
-            src={pizza?.img}
-            style={{ width: "23rem", margin: "auto", paddingTop: "10px" }}
+    <div className="pizza">
+      <Card className="cardPizza" border="info">
+        <Card.Img src={pizza?.img} />
+        <Card.Body>
+          <Card.Title>{pizza?.name}</Card.Title>
+          <Card.Text>{pizza?.desc}</Card.Text>
+          {pizza.ingredients.map((ingredient) => (
+            <Card.Text key={ingredient}>🍕{ingredient}</Card.Text>
+          ))}
+          <img
+            src="/public/ppizza.png"
+            alt="Pizza planet"
+            style={{ width: "5rem", margin: "1px 25px" }}
           />
-          <Card.Body>
-            <Card.Title>{pizza?.name}</Card.Title>
-            <Card.Text>{pizza?.desc}</Card.Text>
-            {pizza.ingredients.map((ingredient) => (
-              <Card.Text key={ingredient}>🍕{ingredient}</Card.Text>
-            ))}
-            <img
-              src="/public/ppizza.png"
-              alt="Pizza planet"
-              style={{ width: "5rem", margin: "1px 25px" }}
-            />
-            <Button variant="outline-warning" onClick={() => addCart(pizza)}>
-              Añadir 🛒
-            </Button>
-            <img
-              src="/public/ppizza.png"
-              alt="Pizza planet"
-              style={{ width: "5rem", margin: "1px 25px" }}
-            />
-            <Card.Footer className="border-success text-info text-center">
-              ${pizza.price}
-            </Card.Footer>
-          </Card.Body>
-        </Card>
-      </Container>
-    </>
+          <Button variant="outline-warning" onClick={() => addCart(pizza)}>
+            Añadir 🛒
+          </Button>
+          <img
+            src="/public/ppizza.png"
+            alt="Pizza planet"
+            style={{ width: "5rem", margin: "1px 25px" }}
+          />
+          <Card.Footer className="border-success text-info text-center">
+            ${pizza.price}
+          </Card.Footer>
+        </Card.Body>
+      </Card>
+    </div>
   );
 }
