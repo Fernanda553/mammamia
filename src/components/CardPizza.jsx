@@ -20,6 +20,8 @@ function CardPizza() {
             <Card
               border="warning"
               style={{
+                backgroundColor: "#000",
+                color: "#fff",
                 width: "25rem",
                 margin: "auto",
                 marginTop: "3rem",
@@ -34,12 +36,15 @@ function CardPizza() {
                 ))}
                 <div className="d-flex justify-content-around">
                   <Button
-                    className="bg-primary"
+                    variant="outline-primary"
                     onClick={() => handlerClick(pizza.id)}
                   >
                     Ver más 👀
                   </Button>{" "}
-                  <Button className="bg-danger" onClick={() => addCart(pizza)}>
+                  <Button
+                    variant="outline-danger"
+                    onClick={() => addCart(pizza)}
+                  >
                     Añadir 🛒
                   </Button>
                 </div>
